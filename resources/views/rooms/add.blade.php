@@ -1,67 +1,98 @@
 @extends('layouts.layout')
 @section('content')
-    <form action="{{route('add')}}" method="post" >
+    <form action="{{route('add_Room')}}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="form-label">Tên Loại Phòng:</label>
-            <input type="text" class="form-control" name="name"  placeholder="Nhập tên ....">
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
-        <div class="form-group">
-            <label class="form-label">Tên  Phòng:</label>
-            <input type="text" class="form-control" name="name"  placeholder="Nhập tên ....">
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
 
-        <div class="form-group">
-            <label class="form-label">Ảnh:</label>
-            <input type="file" class="form-control" name="name"  placeholder="Nhập tên ....">
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Tên</label>
+                        <input type="text" class="form-control" name="name" placeholder="Nhập tên Phòng ...">
+                        @error('name')
+                        <span class="text-danger"> {{$message}} <br> </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label  class="form-control-file">Ảnh</label>
+                        <img id="image_preview" src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" style="width: 50px" >
+                        <input type="file" accept="image/" id="image" name="image"   class="@error('image') is-invalid @enderror"  >
+                        @error('image')
+                        <span class="text-danger"> {{$message}} <br> </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label class="form-label">Giá Phòng:</label>
-            <input type="number" class="form-control" name="name"  placeholder="Nhập tên ....">
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
+            <div class="row">
+                <div class="col-sm-4">
 
-        <div class="form-group">
-            <label class="form-label">Mô tả:</label>
-            <input type="text" class="form-control" name="name"  placeholder="Nhập tên ....">
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
+                    <div class="form-group">
+                        <label>Giá</label>
+                        <input type="number" class="form-control" name="price">
+                        @error('price')
+                        <span class="text-danger"> {{$message}} <br> </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Mô tả</label> <br>
+                       <textarea name="description" ></textarea>
+                    </div>
+                    @error('description')
+                    <span class="text-danger"> {{$message}} <br> </span>
+                    @enderror
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label class="form-label">Trạng thái:</label>
-            <input type="text" class="form-control" name="name"  placeholder="Nhập tên ....">
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
 
-        <div class="form-group">
-            <select name="type_room" class="w-100" id="">
-                    <?php
-                    foreach($types as $type){
-                        extract($type);
-                        echo '<option value="'.$id.'">'.$name.'</option>';
-                    }
-                    ?>
-            </select>
-        </div>
-        @error('name')
-        <span class="text-danger"> {{$message}} <br> </span>
-        @enderror
-        <button type="submit" class="btn btn-success">Submit</button>
+            <div class="row">
+                <div class="col-sm-2">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Loại Phòng</label>
+                        <select class="form-control" name="room_type" id="">
+
+
+                                @foreach($type as $types)
+                                    <option name="room_type" value="<?= $types['name'] ?>" >
+                                          {{$types->name}}
+                                    </option>
+                                @endforeach
+
+                        </select>
+
+
+                        @error('room_type')
+                        <span class="text-danger"> {{$message}} <br> </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Trạng thái:</label> <br>
+                        <select name="status" class="form-select" >
+
+                            <option value="Trống">Trống</option>
+                            <option value="Đã đặt">Đã đặt</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                    @error('status')
+                    <span class="text-danger"> {{$message}} <br> </span>
+                    @enderror
+                </div>
+            </div>
+
+
+
+
+
+
+            <button type="submit" class="btn btn-success">Thêm</button> </div>
     </form>
 @endsection

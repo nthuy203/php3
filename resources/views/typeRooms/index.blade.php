@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
     <div class="col-md-5 col-lg-3 order-3 order-md-2">
-        <p style="text-align: center;" >{{$title}}</p>
+{{--        <p style="text-align: center;" >{{$title}}</p>--}}
             <form>
 
                 <div class="input-group">

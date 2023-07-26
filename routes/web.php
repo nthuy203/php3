@@ -17,14 +17,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 //Loại phòng
-Route::match(['get','post'],'/room_types',[\App\Http\Controllers\TypeRoomController::class, 'index'])->name('typeRooms');
+Route::match(['get','post'],'/',[\App\Http\Controllers\TypeRoomController::class, 'index'])->name('typeRooms');
 Route::match(['get','post'],'/room_types/add',[\App\Http\Controllers\TypeRoomController::class, 'add'])->name('add_typeRooms');
 Route::match(['get','post'],'/room_types/update/{id}',[\App\Http\Controllers\TypeRoomController::class, 'edit'])->name('edit_typeRooms');
 Route::match(['get','post','put'],'/room_types/edit/{id}',[\App\Http\Controllers\TypeRoomController::class, 'update'])->name('update_typeRooms');
 Route::match(['get','post'],'/room_types/delete/{id}',[\App\Http\Controllers\TypeRoomController::class, 'delete'])->name('delete_typeRooms');
 //Phòng
-// Route::match(['get','post'],'/rooms',[\App\Http\Controllers\RoomController::class, 'index'])->name('Room');
-// Route::match(['get','post'],'/rooms/add',[\App\Http\Controllers\TypeRoomController::class, 'add'])->name('add_Room');
+Route::match(['get','post'],'/rooms',[\App\Http\Controllers\RoomController::class,'index'])->name('Room');
+Route::match(['get','post'],'/rooms/add',[\App\Http\Controllers\RoomController::class,'add'])->name('add_Room');
+Route::match(['get','post'],'/rooms/update/{id}',[\App\Http\Controllers\RoomController::class, 'edit'])->name('edit_Room');
+Route::match(['get','post'],'/rooms/delete/{id}',[\App\Http\Controllers\RoomController::class, 'delete'])->name('delete_Room');
 
 
 //Dịch vụ

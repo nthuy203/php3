@@ -14,7 +14,15 @@ class TypeRoomSeeder extends Seeder
     public function run(): void
     {
         DB::table('room_types')->insert([
-            'name' => 'Phòng đơn',
+            [
+                'name' => 'Phòng đơn',
+            ],
+            [
+                'name' => 'Phòng đôi',
+            ],
+            [
+                'name' => 'Phòng vip',
+            ]
         ]);
         //
     }
